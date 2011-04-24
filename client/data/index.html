@@ -103,11 +103,11 @@ var lineMap = {};
     for(var i=0;i<lineInfo.length;i++){
       var newRow   = tableRef.insertRow(i);
 
-      var newCell  = newRow.insertCell(0);
-      newCell.id = "line_"+lineInfo[i].id;
-      newCell.style.background = lineInfo[i].background;
-      newCell.innerHTML = lineInfo[i].lineName;
-      newCell.className = "line";
+      var lineCell  = newRow.insertCell(0);
+      lineCell.id = "line_"+lineInfo[i].id;
+      lineCell.style.background = lineInfo[i].background;
+      lineCell.innerHTML = lineInfo[i].lineName;
+      lineCell.className = "line";
 
       var statusCell = newRow.insertCell(1);
       statusCell.id =  "line_"+lineInfo[i].id+"_status";

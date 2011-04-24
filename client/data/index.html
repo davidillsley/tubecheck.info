@@ -106,18 +106,18 @@ var lineMap = {};
       var lineCell  = newRow.insertCell(0);
       lineCell.id = "line_"+lineInfo[i].id;
       lineCell.style.background = lineInfo[i].background;
-      lineCell.innerHTML = lineInfo[i].lineName;
+      lineCell.textContent = lineInfo[i].lineName;
       lineCell.className = "line";
 
       var statusCell = newRow.insertCell(1);
       statusCell.id =  "line_"+lineInfo[i].id+"_status";
       statusCell.className = "ss";
-      statusCell.innerHTML = "Loading...";
+      statusCell.textContent = "Loading...";
 
       var moreCell = newRow.insertCell(2);
       moreCell.id = "line_"+lineInfo[i].id+"_more";
       moreCell.className = "more";
-      moreCell.innerHTML = "More...";
+      moreCell.textContent = "More...";
       lineMap[lineInfo[i].id] = lineInfo[i];
     }
 </script>

@@ -5,9 +5,9 @@ function showMore(lineStatus){
 		document.getElementById("detail").style.display="block";
 		document.getElementById("summary").style.display="none";
 		var obj = self.lineStatus;
-		document.getElementById("detailTitle").innerHTML=obj.lineName;
+		document.getElementById("detailTitle").textContent=obj.lineName;
 		document.getElementById("detailTitle").style.background = lineMap[obj.id].background;
-		document.getElementById("detailContent").innerHTML=obj.longDescription;
+		document.getElementById("detailContent").textContent=obj.longDescription;
 	}
 }
 
@@ -16,7 +16,7 @@ onMessage = function onMessage(msg) {
   var message = msg.details;
   for(i in message){
 	var elementId = ("line_"+message[i].id+"_status");
-	document.getElementById(elementId).innerHTML = message[i].shortDescription;
+	document.getElementById(elementId).textContent = message[i].shortDescription;
 	if(message[i].longDescription != ""){
 		var moreElement = document.getElementById("line_"+message[i].id+"_more")
 		moreElement.style.visibility="visible";

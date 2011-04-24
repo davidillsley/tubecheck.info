@@ -3,7 +3,6 @@ const tabs = require("tabs");
 const data = require("self").data;
 
 var panel = require("panel").Panel({
-  id:"tubecheck.info/panel1",
   contentScriptFile: data.url("panel.js"),
   contentScriptWhen: "ready",
   contentURL: data.url("index.html"),
@@ -33,6 +32,7 @@ function processResponse(response){
 }
 
 var widget = widgets.Widget({
+  id:"tubecheck.info/widget1",
   label: "Tube Status",
   contentURL: data.url("tube.png"),
   panel: panel

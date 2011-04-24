@@ -6,7 +6,7 @@ function showMore(lineStatus){
 		document.getElementById("summary").style.display="none";
 		var obj = self.lineStatus;
 		document.getElementById("detailTitle").innerHTML=obj.lineName;
-		document.getElementById("detailTitle").style.background = document.getElementById('line_'+obj.id).style.background;
+		document.getElementById("detailTitle").style.background = lineMap[obj.id].background;
 		document.getElementById("detailContent").innerHTML=obj.longDescription;
 	}
 }
@@ -18,14 +18,12 @@ onMessage = function onMessage(msg) {
 	var elementId = ("line_"+message[i].id+"_status");
 	document.getElementById(elementId).innerHTML = message[i].shortDescription;
 	if(message[i].longDescription != ""){
-		document.getElementById("line_"+message[i].id+"_img").style.visibility="visible";
-		document.getElementById("line_"+message[i].id+"_img").style.border="10px";
-		document.getElementById("line_"+message[i].id+"_img").style.background="grey";
-		document.getElementById("line_"+message[i].id+"_img").style.color="white";
+		var moreElement = document.getElementById("line_"+message[i].id+"_more")
+		moreElement.style.visibility="visible";
 		var sm = new showMore(message[i]);
-		document.getElementById("line_"+message[i].id+"_img").addEventListener("click", sm.onClick, true);
+		moreElement.addEventListener("click", sm.onClick, true);
 	}else{
-		document.getElementById("line_"+message[i].id+"_img").style.visibility="hidden";
+		document.getElementById("line_"+message[i].id+"_more").style.visibility="hidden";
 	}
   }
   }else{
@@ -33,6 +31,9 @@ onMessage = function onMessage(msg) {
     for(var i=0;i<ssElements.length;i++){
       ssElements[i].innerHTML = "Loading...";
     }
-    console.log("hide");
+    var moreElements = document.getElementsByClassName("more");
+    for(var i=0;i<moreElements.length;i++){
+      moreElements[i].style.visibility = "hidden";
+    }
   }
 };

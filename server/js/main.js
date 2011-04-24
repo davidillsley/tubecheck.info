@@ -21,7 +21,7 @@ var currentStatus = {};
 var helper = require("./tfl_check.js");
 function done(stat){
 	currentStatus = stat;
-	console.log("done "+JSON.stringify(stat));
+	console.log("Response@"+new Date()+":"+JSON.stringify(stat));
 	setTimeout(function(){helper.refreshStatus(done);},30*1000);
 }
 helper.refreshStatus(done);

@@ -1,0 +1,9 @@
+{
+    "name": "tubecheckinfo", 
+    "license": "MPL 1.1/GPL 2.0/LGPL 2.1", 
+    "author": "david@illsley.org", 
+    "version": "0.1", 
+    "fullName": "tubecheck.info", 
+    "id": "jid0-O188OBO3GnYGAJZAdwRYPOe3YNk", 
+    "description": "Shows current status of the London tube network"
+}

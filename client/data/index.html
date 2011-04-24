@@ -1,0 +1,48 @@
+<html>
+<head>
+<style>
+body {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size:70%;
+  border-color:black;
+}
+.line{
+  color: #FFFFFF;
+  font-size:70%;
+  font-weight: bold;
+}
+td {
+	font-size:70%;
+	margin: 10px,2,2,2;
+	padding: 10px,10px,10px,10px;
+	color: white;
+}
+#detail{
+	display:none;
+}
+</style>
+</head>
+<body id="body">
+<table id="summary">
+<tr><td id="line_1" style="background: #AE6118" class="line">Bakerloo</td><td id="line_1_status">Loading...</td><td id="line_1_img">More...</td></tr>
+<tr><td id="line_2" style="background: #E41F1F" class="line">Central</td><td id="line_2_status">Loading...</td><td id="line_2_img">More...</td></tr>
+<tr><td id="line_3" style="background: #009FE0" class="line">Victoria</td><td id="line_3_status">Loading...</td><td id="line_3_img">More...</td></tr>
+<tr><td id="line_4" style="background: #8F989E" class="line">Jubilee</td><td id="line_4_status">Loading...</td><td id="line_4_img">More...</td></tr>
+<tr><td id="line_5" style="background: #000000" class="line">Northern</td><td id="line_5_status">Loading...</td><td id="line_5_img">More...</td></tr>
+<tr><td id="line_6" style="background: #0450A1" class="line">Piccadilly</td><td id="line_6_status">Loading...</td><td id="line_6_img">More...</td></tr>
+<tr><td id="line_7" style="background: #F8D42D" class="line">Circle</td><td id="line_7_status">Loading...</td><td id="line_7_img">More...</td></tr>
+<tr><td id="line_8" style="background: #E899A8" class="line">Hammersmith and City</td><td id="line_8_status">Loading...</td><td id="line_8_img">More...</td></tr>
+<tr><td id="line_9" style="background: #00A575" class="line">District</td><td id="line_9_status">Loading...</td><td id="line_9_img">More...</td></tr>
+<tr><td id="line_11" style="background: #893267" class="line">Metropolitan</td><td id="line_11_status">Loading...</td><td id="line_11_img">More...</td></tr>
+<tr><td id="line_12" style="background: #70C3CE" class="line">Waterloo and City</td><td id="line_12_status">Loading...</td><td id="line_12_img">More...</td></tr>
+<tr><td id="line_81" style="background: #00BBB4" class="line">DLR</td><td id="line_81_status">Loading...</td><td id="line_81_img">More...</td></tr>
+<tr><td id="line_82" style="background: #F86C00" class="line">Overground</td><td id="line_82_status">Loading...</td><td id="line_82_img">More...</td></tr>
+</table>
+<div id="detail">
+<div id="detailTitle" style="color: #FFFFFF; font-weight:bold;"></div>
+<div id="detailContent" style="text-align:left;color:white;"></div>
+<br>
+<div id="detailBack" style="text-align:center; background:grey;color:white" onClick="document.getElementById('summary').style.display='block';document.getElementById('detail').style.display='none';">Back</div>
+</div>
+</body>
+</html>

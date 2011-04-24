@@ -11,7 +11,9 @@ function showMore(lineStatus){
 	}
 }
 
-onMessage = function onMessage(message) {
+onMessage = function onMessage(msg) {
+  if(msg.type == "details"){
+  var message = msg.details;
   for(i in message){
 	var elementId = ("line_"+message[i].id+"_status");
 	document.getElementById(elementId).innerHTML = message[i].shortDescription;
@@ -25,5 +27,12 @@ onMessage = function onMessage(message) {
 	}else{
 		document.getElementById("line_"+message[i].id+"_img").style.visibility="hidden";
 	}
+  }
+  }else{
+    var ssElements = document.getElementsByClassName("ss");
+    for(var i=0;i<ssElements.length;i++){
+      ssElements[i].innerHTML = "Loading...";
+    }
+    console.log("hide");
   }
 };

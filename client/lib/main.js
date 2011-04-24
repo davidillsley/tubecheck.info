@@ -9,7 +9,8 @@ var panel = require("panel").Panel({
   contentURL: data.url("index.html"),
   width:280,
   height:265,
-  onShow: doRequest
+  onShow: doRequest,
+  onHide: showLoading
 });
 
 function doRequest(){
@@ -20,8 +21,15 @@ function doRequest(){
   }).get();	
 }
 
+function showLoading(){
+  var message = {"type":"loading"};
+  panel.postMessage(message);
+}
+
 function processResponse(response){
-  panel.postMessage(response.json);
+  var message = {"type":"details"};
+  message.details = response.json;
+  panel.postMessage(message);
 }
 
 var widget = widgets.Widget({

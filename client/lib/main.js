@@ -26,7 +26,7 @@ function doRequest(){
 
 function showLoading(){
   var message = {"type":"loading"};
-  panel.postMessage(message);
+  panel.port.emit("loading",message);
 }
 
 function processResponse(response){
@@ -36,7 +36,7 @@ function processResponse(response){
     latestResponse = response.json;
   }
   message.details  = latestResponse;
-  panel.postMessage(message);
+  panel.port.emit("details",message)
 }
 
 var widget = widgets.Widget({

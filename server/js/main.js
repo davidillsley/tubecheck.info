@@ -34,7 +34,6 @@ function done(stat){
 helper.refreshStatus(done);
 
 http.createServer(function (req, res) {
-  console.log(req.headers);
   if(currentHash == req.headers["if-none-match"]){
     res.statusCode = 304;
     res.end();

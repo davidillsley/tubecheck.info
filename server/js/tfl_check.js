@@ -53,10 +53,10 @@ function RefreshRequest(callback){
  		for(var i=0;i<lineStatusArray.length;i++){
 			var lineStatus = {};
 			lineStatus.id = lineStatusArray[i].Line['@'].ID;
-			lineStatus.lineName = lineStatusArray[i].Line['@'].Name;
+		//	lineStatus.lineName = lineStatusArray[i].Line['@'].Name;
 			lineStatus.longDescription = (lineStatusArray[i])['@'].StatusDetails;
         		lineStatus.shortDescription = lineStatusArray[i].Status['@'].Description;
-        		lineStatus.statusClass = lineStatusArray[i].Status['@'].CssClass;
+        	//	lineStatus.statusClass = lineStatusArray[i].Status['@'].CssClass;
 			currentStatus[lineStatus.id] = lineStatus;
     		}
     		self.cback(currentStatus);

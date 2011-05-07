@@ -5,7 +5,7 @@ function showMore(lineStatus){
 		document.getElementById("detail").style.display="block";
 		document.getElementById("summary").style.display="none";
 		var obj = self.lineStatus;
-		document.getElementById("detailTitle").textContent=obj.lineName;
+		document.getElementById("detailTitle").textContent=lineMap[obj.id].lineName;
 		document.getElementById("detailTitle").style.background = lineMap[obj.id].background;
 		document.getElementById("detailContent").textContent=obj.longDescription;
 	}

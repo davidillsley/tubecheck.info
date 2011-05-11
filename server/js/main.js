@@ -26,9 +26,12 @@ function done(stat){
 	currentText = JSON.stringify(currentStatus);
 	var hash = crypto.createHash('sha1');
 	hash.update(currentText);
-	currentHash = hash.digest('base64');
+	var oldHash = currentHash;
+        currentHash = hash.digest('base64');
 	console.log("Response@"+new Date()+":"+currentHash);
-	console.log(JSON.stringify(stat));
+	if(currentHash!=oldHash){
+		console.log(JSON.stringify(stat));
+	}
 	setTimeout(function(){helper.refreshStatus(done);},30*1000);
 }
 helper.refreshStatus(done);

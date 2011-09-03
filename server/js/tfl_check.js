@@ -35,7 +35,12 @@ function RefreshRequest(callback){
 		self.currentText = self.currentText + chunk;
 	};
 	this.processComplete = function(){
+		try{
 		self.parser.parseString(self.currentText);
+		}catch(err){
+			console.log("Error: "+new Date()+" "+err);
+			self.cback({"Error":err});
+		}
   	};
 	this.start = function(){
 		var request = client.request('GET', '/TrackerNet/LineStatus',

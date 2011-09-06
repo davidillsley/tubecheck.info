@@ -84,7 +84,7 @@ for(var i=0;i<lineInfo.length;i++){
 	var moreCell = newRow.insertCell(2);
 	moreCell.id = "line_"+lineInfo[i].id+"_more";
 	moreCell.className = "more";
-	moreCell.textContent = "More...";
+	moreCell.innerHTML = "<a href=\"#\">More...</a>";
       	lineMap[lineInfo[i].id] = lineInfo[i];
 }
 

@@ -13,6 +13,11 @@ body {
   background:gray;
   visibility: hidden;
 }
+a{
+  font-family: Arial,Helvetica,sans-serif;
+  color:white; 
+  text-decoration: none;
+}
 td {
   font-size:70%;
 }
@@ -28,7 +33,7 @@ td {
 <div id="detailTitle" style="color: #FFFFFF; font-weight:bold;"></div>
 <div id="detailContent" style="text-align:left;color:white;"></div>
 <br>
-<div id="detailBack" style="text-align:center; background:grey;color:white" onClick="document.getElementById('summary').style.display='block';document.getElementById('detail').style.display='none';">Back</div>
+<div id="detailBack" style="text-align:center; background:grey;color:white" onClick="document.getElementById('summary').style.display='block';document.getElementById('detail').style.display='none';"><a href="#">Back</a></div>
 </div>
 <script>
 if(navigator.userAgent.search("Macintosh")<0){

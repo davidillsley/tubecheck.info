@@ -36,7 +36,7 @@ function RefreshRequest(callback){
 	};
 	this.processComplete = function(){
 		try{
-		self.parser.parseString(self.currentText);
+			self.parser.parseString(self.currentText.substring(40));
 		}catch(err){
 			console.log("Error: "+new Date()+" "+err);
 			self.cback({"Error":err});

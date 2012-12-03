@@ -42,7 +42,7 @@ object App {
             case Some(value) =>
               if (value == etag)
                 render.nothing
-                  .status(204)
+                  .status(304)
                   .header("etag", etag)
                   .header("Content-Type", "application/json")
               else

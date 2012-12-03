@@ -18,7 +18,7 @@ object App {
 
       val client: Service[HttpRequest, HttpResponse] = ClientBuilder()
         .codec(Http())
-        .hosts("localhost:9001")
+        .hosts("cloud.tfl.gov.uk:80")
         .tcpConnectTimeout(Duration(10, TimeUnit.SECONDS))
         .hostConnectionLimit(1)
         .build()

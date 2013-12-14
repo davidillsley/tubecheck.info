@@ -36,20 +36,12 @@ object App {
           val is = newInputStream(chars)
           val elem = scala.xml.XML.load(is)
           val etag = elem.toString.hashCode.toString
-          request.headers.get("if-none-match") match {
-            case None => render.json(xform(elem))
-              .header("etag", etag)
-            case Some(value) =>
-              if (value == etag)
-                render.nothing
-                  .status(304)
-                  .header("etag", etag)
-                  .header("Content-Type", "application/json; charset=utf-8")
-              else
-                render.json(xform(elem))
-                  .header("etag", etag)
+          val resp = request.headers.get("if-none-match") match {            
+            case Some(value) if value == etag => render.nothing.status(304)
+            case _ => render.json(xform(elem))              
           }
-
+          resp.header("etag", etag)
+              .header("Content-Type", "application/json; charset=utf-8")
       }
     }
 

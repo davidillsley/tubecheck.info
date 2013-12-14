@@ -44,7 +44,7 @@ object App {
                 render.nothing
                   .status(304)
                   .header("etag", etag)
-                  .header("Content-Type", "application/json")
+                  .header("Content-Type", "application/json; charset=utf-8")
               else
                 render.json(xform(elem))
                   .header("etag", etag)

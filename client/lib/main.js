@@ -1,11 +1,11 @@
-const widgets = require("widget");
-const tabs = require("tabs");
-const data = require("self").data;
+const widgets = require("sdk/widget");
+const tabs = require("sdk/tabs");
+const data = require("sdk/self").data;
 
 var latestResponse = {};
 var latestETag = "*";
 
-var panel = require("panel").Panel({
+var panel = require("sdk/panel").Panel({
   contentScriptFile: data.url("panel.js"),
   contentScriptWhen: "ready",
   contentURL: data.url("index.html"),
@@ -16,7 +16,7 @@ var panel = require("panel").Panel({
 });
 
 function doRequest(){
-  var Request = require('request').Request;
+  var Request = require('sdk/request').Request;
   Request({
     url: "http://tubecheck.info/status",
     headers: {"If-None-Match":latestETag},

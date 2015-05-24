@@ -2,13 +2,9 @@
     "description": "Shows current status of the London tube network",
     "license": "MPL 1.1/GPL 2.0/LGPL 2.1",
     "author": "david@illsley.org",
-    "version": "0.4.11", 
+    "version": "0.4.11",
     "fullName": "tubecheck.info",
     "id": "jid0-IWOGEuIbAsGv3UV3PIaL5mThUVQ@jetpack",
     "name": "tubecheckinfo",
-    "main": "lib/main.js",
-    "engines": {
-    	"firefox": ">=33.0a1",
-    	"firefox": "<=34.0a1"
-  	}
+    "main": "lib/main.js"
 }

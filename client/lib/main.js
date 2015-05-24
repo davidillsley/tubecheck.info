@@ -1,4 +1,3 @@
-const widgets = require("sdk/widget");
 const tabs = require("sdk/tabs");
 const data = require("sdk/self").data;
 
@@ -41,8 +40,8 @@ function doRequest(){
     url: "http://tubecheck.info/status",
     headers: {"If-None-Match":latestETag},
     overrideMimeType: "application/json; charset=utf-8",
-    onComplete: processResponse 
-  }).get();	
+    onComplete: processResponse
+  }).get();
 }
 
 function showLoading(){

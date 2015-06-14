@@ -63,6 +63,11 @@ var lineInfo =[
 "id":"82",
 "lineName":"Overground",
 "background":"#F86C00"
+},
+{
+"id":"83",
+"lineName":"TfL Rail",
+"background": "#0019A8"  
 }
 ];
 var lineMap = {};

@@ -11,7 +11,7 @@ var self = require("sdk/self");
 
 var button = ToggleButton({
   id: "my-button",
-  label: "my button",
+  label: "Tube Status",
   icon: "./tube.png",
   onChange: handleChange
 });
@@ -29,7 +29,7 @@ var panel = require("sdk/panel").Panel({
   contentScriptWhen: "ready",
   contentURL: data.url("index.html"),
   width:280,
-  height:265,
+  height:280,
   onShow: doRequest,
   onHide: showLoading
 });

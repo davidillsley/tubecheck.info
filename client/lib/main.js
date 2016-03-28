@@ -1,10 +1,6 @@
 const tabs = require("sdk/tabs");
 const data = require("sdk/self").data;
 
-var latestResponse = {};
-var latestETag = "*";
-
-
 var { ToggleButton } = require('sdk/ui/button/toggle');
 var panels = require("sdk/panel");
 var self = require("sdk/self");
@@ -37,8 +33,7 @@ var panel = require("sdk/panel").Panel({
 function doRequest(){
   var Request = require('sdk/request').Request;
   Request({
-    url: "http://tubecheck.info/status",
-    headers: {"If-None-Match":latestETag},
+    url: "https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status",
     overrideMimeType: "application/json; charset=utf-8",
     onComplete: processResponse
   }).get();
@@ -51,11 +46,5 @@ function showLoading(){
 }
 
 function processResponse(response){
-  var message = {"type":"details"};
-  if("304" != response.status){
-    latestETag = response.headers["Etag"];
-    latestResponse = response.json;
-  }
-  message.details  = latestResponse;
-  panel.port.emit("details",message)
+  panel.port.emit("details",response.json)
 }

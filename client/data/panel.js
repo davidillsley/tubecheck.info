@@ -1,96 +1,38 @@
-var lineInfo =[
-{
-"id":"1",
-"lineName":"Bakerloo",
-"background":"#AE6118"
-},
-{
-"id":"2",
-"lineName":"Central",
-"background":"#E41F1F"
-},
-{
-"id":"3",
-"lineName":"Victoria",
-"background":"#009FE0"
-},
-{
-"id":"4",
-"lineName":"Jubilee",
-"background":"#8F989E"
-},
-{
-"id":"5",
-"lineName":"Northern",
-"background":"#000000"
-},
-{
-"id":"6",
-"lineName":"Piccadilly",
-"background":"#0450A1"
-},
-{
-"id":"7",
-"lineName":"Circle",
-"background":"#F8D42D"
-},
-{
-"id":"8",
-"lineName":"Hammersmith and City",
-"background":"#E899A8"
-},
-{
-"id":"9",
-"lineName":"District",
-"background":"#00A575"
-},
-{
-"id":"11",
-"lineName":"Metropolitan",
-"background":"#893267"
-},
-{
-"id":"12",
-"lineName":"Waterloo and City",
-"background":"#70C3CE"
-},
-{
-"id":"81",
-"lineName":"DLR",
-"background":"#00BBB4"
-},
-{
-"id":"82",
-"lineName":"Overground",
-"background":"#F86C00"
-},
-{
-"id":"83",
-"lineName":"TfL Rail",
-"background": "#0019A8"  
-}
-];
+var lineInfo ={
+	"bakerloo":"#AE6118",
+	"central":"#E41F1F",
+	"victoria":"#009FE0",
+	"jubilee":"#8F989E",
+	"northern":"#000000",
+	"piccadilly":"#0450A1",
+	"circle":"#F8D42D",
+	"hammersmith-city":"#E899A8",
+	"district":"#00A575",
+	"metropolitan":"#893267",
+	"waterloo-city":"#70C3CE",
+	"dlr":"#00BBB4",
+	"london-overground":"#F86C00",
+	"tfl-rail": "#0019A8"
+};
 var lineMap = {};
 var tableRef = document.getElementById("summary");
-for(var i=0;i<lineInfo.length;i++){
+for(i in lineInfo){
 	var newRow   = tableRef.insertRow(i);
 
 	var lineCell  = newRow.insertCell(0);
-	lineCell.id = "line_"+lineInfo[i].id;
-	lineCell.style.background = lineInfo[i].background;
-	lineCell.textContent = lineInfo[i].lineName;
+	lineCell.id = "line_"+i;
+	lineCell.style.background = lineInfo[i];
 	lineCell.className = "line";
 
 	var statusCell = newRow.insertCell(1);
-	statusCell.id =  "line_"+lineInfo[i].id+"_status";
+	statusCell.id =  "line_"+i+"_status";
 	statusCell.className = "ss";
 	statusCell.textContent = "Loading...";
 
 	var moreCell = newRow.insertCell(2);
-	moreCell.id = "line_"+lineInfo[i].id+"_more";
+	moreCell.id = "line_"+i+"_more";
 	moreCell.className = "more";
 	moreCell.innerHTML = "<a href=\"#\">More...</a>";
-      	lineMap[lineInfo[i].id] = lineInfo[i];
 }
 
 function showMore(lineStatus){
@@ -100,26 +42,52 @@ function showMore(lineStatus){
 		document.getElementById("detail").style.display="block";
 		document.getElementById("summary").style.display="none";
 		var obj = self.lineStatus;
-		document.getElementById("detailTitle").textContent=lineMap[obj.id].lineName;
-		document.getElementById("detailTitle").style.background = lineMap[obj.id].background;
+		document.getElementById("detailTitle").textContent=obj.lineName;
+		document.getElementById("detailTitle").style.background = obj.background;
 		document.getElementById("detailContent").textContent=obj.longDescription;
 	}
 }
 
 function setDetails(msg) {
-  var message = msg.details;
-  for(i in message){
-	var elementId = ("line_"+message[i].id+"_status");
-	document.getElementById(elementId).textContent = message[i].shortDescription;
-	if(message[i].longDescription != ""){
-		var moreElement = document.getElementById("line_"+message[i].id+"_more")
-		moreElement.style.visibility="visible";
-		var sm = new showMore(message[i]);
-		moreElement.addEventListener("click", sm.onClick, true);
-	}else{
-		document.getElementById("line_"+message[i].id+"_more").style.visibility="hidden";
+	for(i in msg) {
+		var id = msg[i].id;
+		var name = msg[i].name;
+		document.getElementById("line_"+id).textContent = name;
+
+		var currentStatus = {"statusSeverity": -1};
+		for(j in msg[i].lineStatuses) {
+			if(msg[i].lineStatuses[j].statusSeverity > currentStatus.statusSeverity) {
+				if(msg[i].lineStatuses[j].validityPeriods.length == 0){
+					currentStatus = msg[i].lineStatuses[j];
+				} else {
+					for(k in msg[i].lineStatuses[j].validityPeriods) {
+						if(msg[i].lineStatuses[j].validityPeriods[k].isNow) {
+							currentStatus = msg[i].lineStatuses[j];
+						} else {
+						  var fromDate = Date.parse(msg[i].lineStatuses[j].validityPeriods[k].fromDate);
+							var toDate = Date.parse(msg[i].lineStatuses[j].validityPeriods[k].toDate);
+							var now = Date.now();
+							if(now > fromDate && now < toDate) {
+								currentStatus = msg[i].lineStatuses[j];
+							}
+						}
+					}
+				}
+			}
+		}
+		document.getElementById("line_"+id+"_status").textContent = currentStatus.statusSeverityDescription;
+		if(msg[i].lineStatuses[j].reason) {
+				var moreElement = document.getElementById("line_"+id+"_more")
+				moreElement.style.visibility="visible";
+				var obj = {
+					"lineName" : name,
+					"background": lineInfo[id],
+					"longDescription":msg[i].lineStatuses[j].reason
+				};
+				var sm = new showMore(obj);
+				moreElement.addEventListener("click", sm.onClick, true);
+		}
 	}
-  }
 };
 
 function setLoading(){

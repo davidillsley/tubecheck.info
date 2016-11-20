@@ -14,6 +14,7 @@ var lineInfo ={
 	"london-overground":"#F86C00",
 	"tfl-rail": "#0019A8"
 };
+
 var lineMap = {};
 var tableRef = document.getElementById("summary");
 for(i in lineInfo){
@@ -34,6 +35,11 @@ for(i in lineInfo){
 	moreCell.className = "more";
 	moreCell.innerHTML = "<a href=\"#\">More...</a>";
 }
+
+document.getElementById("detail").addEventListener("click", function(e){
+	document.getElementById('summary').style.display='block';
+	document.getElementById('detail').style.display='none';
+});
 
 function showMore(lineStatus){
 	var self = this;
@@ -103,5 +109,10 @@ function setLoading(){
   document.getElementById('detail').style.display='none';
 }
 
-self.port.on("loading",setLoading);
-self.port.on("details",setDetails);
+setLoading();
+var xhr = new XMLHttpRequest();
+xhr.addEventListener("load", function(a1) {
+	setDetails(JSON.parse(xhr.responseText));
+});
+xhr.open("GET", "https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status");
+xhr.send();
